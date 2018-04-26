@@ -1,0 +1,63 @@
+<!--index.wxml-->
+
+<view class="container">
+   <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>  -->
+  <view class="nav" >
+    <view class='brand-img'>
+    </view>
+    <view class='input-container'>
+      <view class="search-icon">
+        <icon type="search" color="#888" size='14'></icon>
+      </view>
+        
+      <input name="search" placeholder="请输入关键字" class="search-input" bindconfirm="searchSubmit" 
+      bindinput ="searchInput" bindfocus='focusSearch' >
+      </input>
+    </view>
+  </view>
+  <view class='content'>
+    <view class= "navbar">
+      <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}  " wx:key="unique" bindtap="navbarTap">
+        <text>{{item}}</text>
+      </view> 
+    </view>
+    <view hidden="{{currentTab!=0}}" class='node-item'>
+         <view bindtap='jump' wx:for="{{weibo}}" wx:key="title" data-select="{{item}}" class='weui-panel__hd'>
+          <text>{{item}}</text>
+        </view>  
+      </view>
+      <!--豆瓣--> 
+    <view hidden="{{currentTab!=1}}" class='node-item'>
+      <view bindtap='jump' wx:for="{{douban}}" wx:key="title" data-select="{{item}}" class='weui-panel__hd'>
+          <text>{{item}}</text>
+        </view>  
+    </view>
+    <!--zhihu  -->
+    <view hidden="{{currentTab!=2}}" class='node-item'>
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view>
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view> 
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view> 
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view>
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view>
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view> 
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view> 
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view>
+        <view bindtap="jump" class="weui-panel__hd"><text>习近平</text> </view>
+      </view>
+      <!--头条--> 
+      <view hidden="{{currentTab!=3}}" class='node-item'> 
+        <view bindtap='jump' wx:for="{{toutiao}}" wx:key="title" data-select="{{item}}" class='weui-panel__hd'>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+</view>

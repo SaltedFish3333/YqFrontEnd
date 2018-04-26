@@ -1,0 +1,30 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/analysis/analysis",
+    "pages/details/details",
+    "pages/logs/logs",
+    "pages/userfollow/follow"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#315BA7",
+    "navigationBarTitleText": "舆情分析",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#315BA7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "我的"
+      }
+    ]
+  }
+}
