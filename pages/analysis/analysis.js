@@ -2,7 +2,7 @@
 var util = require("../../utils/util.js");
 var app = getApp()
 Page({
-    
+
   /**
    * 页面的初始数据
    */
@@ -14,14 +14,14 @@ Page({
     newmark: 0, //滑动新位置
     winHeight: 0,
     winWidth: 0,
-    isSubscribed : false,
+    isSubscribed: false,
     isNewsHidden: false,
     currentTab: 0,
-    keywordInfo:{
-      keywordName: "武汉大学",
+    keywordInfo: {
+      keywordName: app.keywords,
       intro: "如果你无法简洁的表达你的想法，那只能说明你还不够了解它。"
     },
-    keywordEmotion:{
+    keywordEmotion: {
       positive: 82,
       nagative: 18,
     },
@@ -40,25 +40,25 @@ Page({
     zhihuContent: null,
     toutiaoContent: null,
     newsContent: null
-  
+
   },
-  
+
   // 点击标题切换当前页时改变样式
   switchNav: function (e) {
     console.log(e)
     var cur = e.target.dataset.current;
-    if(cur==0){
+    if (cur == 0) {
       this.setData({
         isNewsHidden: false
       })
-    }else{
+    } else {
       this.setData({
         isNewsHidden: true
       })
     }
-    if (this.data.currentTab == cur) { 
+    if (this.data.currentTab == cur) {
       this.setData({
-        
+
       })
     }
     else {
@@ -68,7 +68,7 @@ Page({
     }
   },
   //关注按钮切换
-  changeStatus:function(e){
+  changeStatus: function (e) {
     console.log(app.globalData.openid)
     wx.request({
       url: 'http://localhost:8080/Yqanalysis/ChangeKeywordsServlet',
@@ -76,12 +76,12 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      data:{
+      data: {
         openId: app.globalData.openid,
         isSubscribed: this.data.isSubscribed,
         keyword: this.data.keywordInfo.keywordName
       },
-      success: res =>{
+      success: res => {
         if (this.data.isSubscribed) {
           this.setData({
             isSubscribed: false
@@ -103,7 +103,7 @@ Page({
         }
       }
     })
-    
+
   },
   bindDetailView: function (event) {
     var nowUrl = event.currentTarget.dataset.url;
@@ -146,16 +146,16 @@ Page({
     }
   },
   // 选项卡切换
-  touchStart: function(e){
+  touchStart: function (e) {
     this.data.mark = this.data.newmark = e.touches[0].pageX
   },
-  toNewsOrYq: function(e){
+  toNewsOrYq: function (e) {
     console.log(e)
-    console.log(this.data.winWidth+"宽度")
+    console.log(this.data.winWidth + "宽度")
     this.data.newmark = e.touches[0].pageX
     var roffset = this.data.newmark - this.data.mark
-    var loffset = 0-roffset
-    if(roffset>0.2*this.data.winWidth){
+    var loffset = 0 - roffset
+    if (roffset > 0.2 * this.data.winWidth) {
       console.log(roffset)
       // var toNewsAnimation = wx.createAnimation({
       //   duration: 500,
@@ -166,9 +166,9 @@ Page({
       this.setData({
         // toNewsAnimationData: toNewsAnimation.export(),
         currentTab: 0,
-        isNewsHidden:false
+        isNewsHidden: false
       })
-      
+
       // setTimeout(function(){
       //   this.setData({
       //     display: 'none',
@@ -188,9 +188,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options){
+  onLoad: function (options) {
     this.setData({
-      keywordInfo:{
+      keywordInfo: {
         keywordName: options.keyword,
         intro: this.data.keywordInfo.intro
       }
@@ -239,89 +239,86 @@ Page({
           });
       })(j);
     }
-      wx.getSystemInfo({
-        success: res=> {
-          this.setData({
-            winWidth: res.windowWidth,
-            winHeight: res.windowHeight
-          })
-        },
-      })
-      wx.getStorage({
-        key: 'openid',
-        success: res=> {
-          wx.request({
-            url: 'http://localhost:8080/Yqanalysis/CheckKeywordServlet',
-            method: 'GET',
-            header: {
-              'content-type': 'application/json'
-            },
-            data: {
-              openId: res.data,
-              keyword: this.data.keywordInfo.keywordName
-            },
-            success: e => {
-              var isSubscribed = e.data.isKeySubscribed
-              console.log(e.data)
-              this.setData({
-                isSubscribed: isSubscribed
-              })
-            }
-          })
-        },
-      });
-  
-     
-      // wx.request({
-      //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
-      //   data: {
-      //     "keywords": "武汉大学",
-      //     "chart_type": "line_chart",
-      //     "scope": "newsitem"
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success :function(e){
-      //     var chartData = e.data.result
-      //     chartShow(chartData)
-      //     // console.log(chartData)
-      //     // that.setData({
-      //     //   lineChartData: chartData
-      //     // })
-      
-      //   },
-      //   fail:function(e){
-      //     console.log("失败")
-      //   }
-      // })
-      // wx.request({
-      //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
-      //   data:{
-      //     "keywords": "武汉大学",
-      //     "chart_type": "emotion"
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success :function(e){
-      //     console.log(e.data)
-      //     var positive = e.data.result.items[0].percent
-      //     var nagative = e.data.result.items[1].percent
-      //     that.setData({
-      //       keywordInfo:{
-      //         keywordName: "武汉大学",
-      //         intro: "如果你无法简洁的表达你的想法，那只能说明你还不够了解它。",
-      //         positive: (positive*100).toFixed(2),
-      //         nagative: (nagative*100).toFixed(2)
-      //       }
-      //     })
-      //   }
-      // })
-      
-  },  
-  //跳转详情页面
- 
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'openid',
+      success: res => {
+        wx.request({
+          url: 'http://localhost:8080/Yqanalysis/CheckKeywordServlet',
+          method: 'GET',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            openId: res.data,
+            keyword: this.data.keywordInfo.keywordName
+          },
+          success: e => {
+            var isSubscribed = e.data.isKeySubscribed
+            console.log(e.data)
+            this.setData({
+              isSubscribed: isSubscribed
+            })
+          }
+        })
+      },
+    });
+
+
+    // wx.request({
+    //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
+    //   data: {
+    //     "keywords": "武汉大学",
+    //     "chart_type": "line_chart",
+    //     "scope": "newsitem"
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success :function(e){
+    //     var chartData = e.data.result
+    //     chartShow(chartData)
+    //     // console.log(chartData)
+    //     // that.setData({
+    //     //   lineChartData: chartData
+    //     // })
+
+    //   },
+    //   fail:function(e){
+    //     console.log("失败")
+    //   }
+    // })
+    // wx.request({
+    //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
+    //   data:{
+    //     "keywords": "武汉大学",
+    //     "chart_type": "emotion"
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success :function(e){
+    //     console.log(e.data)
+    //     var positive = e.data.result.items[0].percent
+    //     var nagative = e.data.result.items[1].percent
+    //     that.setData({
+    //       keywordInfo:{
+    //         keywordName: "武汉大学",
+    //         intro: "如果你无法简洁的表达你的想法，那只能说明你还不够了解它。",
+    //         positive: (positive*100).toFixed(2),
+    //         nagative: (nagative*100).toFixed(2)
+    //       }
+    //     })
+    //   }
+    // })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -329,26 +326,26 @@ Page({
   onReady: function () {
 
   },
-  
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   }
- 
+
 })
 
-function chartShow(chartdata){
+function chartShow(chartdata) {
   var CHART = require('../../utils/wxcharts.js')
   var hotlist = []
   var timelist = []
   var chartName = chartdata.name
   var chartData = chartdata.data
   for (var a in chartData) {
-    if(a<30){
-    hotlist.push(chartData[a].index)
-    timelist.push(chartData[a].time)
+    if (a < 30) {
+      hotlist.push(chartData[a].index)
+      timelist.push(chartData[a].time)
     }
   }
   console.log(hotlist)
