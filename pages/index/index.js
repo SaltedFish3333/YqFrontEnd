@@ -17,10 +17,11 @@ Page({
       search: e.detail.value
     })
   },
-  searchSubmit: function () {
+  searchSubmit: function (e) {
    // console.log("点击了回车");
-      this.setData({
-      search: e.detail.value
+     console.log(e)
+     wx.navigateTo({
+       url: '../analysis/analysis?keyword='+e.detail.value
      })
   },
 

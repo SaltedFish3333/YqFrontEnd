@@ -12,7 +12,7 @@
  <view class="list-wrapper">
     <view class="weui-cells weui-cells_after-title">
       <block wx:for="{{menuitems}}" wx:key="menu_for">
-        <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="../analysis/analysis?keyword={{item}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
             <image src="{{item.icon}}"></image>
           </view>
