@@ -220,7 +220,7 @@
           </view>
            
           <!--舆情词云图  -->
-          <view class='yq-item'>
+             <!-- <view class='yq-item'>
             <view class='yq-item-hd'>
               舆情词云图
             </view>
@@ -229,7 +229,7 @@
                 <image src='../../images/cloud-graph.png' style='width:100%'></image>
               </view> 
             </view>
-          </view>
+          </view>    -->
         </view>
      
     </view>

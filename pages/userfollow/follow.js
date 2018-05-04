@@ -19,29 +19,7 @@ Page({
     this.setData({
       avatarUrl: options.avatarUrl
     })
-    wx.getStorage({
-      key: 'openid',
-      success:res=> {
-        var openid = res.data
-        wx.request({
-          url: 'http://45.32.65.148:81/Yqanalysis/UserKeywordsServlet',
-          method: 'GET',
-          data: {
-            openId: openid
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: res => {
-            var keys = res.data.keywords
-            this.setData({
-              menuitems : keys.split(',')
-            })
-          }
-        })
-      },
-    })
-   
+    
   },
 
   /**
@@ -55,7 +33,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.getStorage({
+      key: 'openid',
+      success: res => {
+        var openid = res.data
+        wx.request({
+          url: 'http://45.32.65.148:81/Yqanalysis/UserKeywordsServlet',
+          method: 'GET',
+          data: {
+            openId: openid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            var keys = res.data.keywords
+            this.setData({
+              menuitems: keys.split(',')
+            })
+          }
+        })
+      },
+    })
+
   },
 
   /**

@@ -19,7 +19,8 @@ Page({
   },
   searchSubmit: function (e) {
    // console.log("点击了回车");
-     console.log(e)
+     console.log(e);
+     app.keywords = e.detail.value;
      wx.navigateTo({
        url: '../analysis/analysis?keyword='+e.detail.value
      })
@@ -30,8 +31,10 @@ Page({
       wx.request({
         url: 'http://45.32.65.148:81/Yqanalysis/LoadInfoServlet',
         success: res=>{
-          console.log(res.data)
-          var wbkwdStr = res.data.wbkwdStr
+          console.log(res);
+          var wbkwdStr = res.data.wbkwdStr;
+
+          wbkwdStr=wbkwdStr.replace('\n','');
           var array = wbkwdStr.split(',')
           this.setData({
             weibo: array,

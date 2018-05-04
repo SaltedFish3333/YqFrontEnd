@@ -197,7 +197,8 @@ Page({
     })
     var scopeArray = ['poweiboitem', 'powechatitem', 'zhihuitem', 'toutiaoitem', 'newsitem'];
     var contents = [];
-    var keywords = app.keywords;
+    
+    var keywords = options.keyword;
     var weibo;
     var that = this;
     for (var j = 0, len = scopeArray.length; j < len; j++) {
@@ -272,52 +273,57 @@ Page({
     });
 
 
-    // wx.request({
-    //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
-    //   data: {
-    //     "keywords": "武汉大学",
-    //     "chart_type": "line_chart",
-    //     "scope": "newsitem"
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success :function(e){
-    //     var chartData = e.data.result
-    //     chartShow(chartData)
-    //     // console.log(chartData)
-    //     // that.setData({
-    //     //   lineChartData: chartData
-    //     // })
+     wx.request({
+      url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
+      data: {
+        "keywords": options.keyword,
+        "chart_type": "line_chart",
+        "scope": "newsitem"
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success :function(e){
+        var chartData = e.data.result
+        chartShow(chartData)
+        // console.log(chartData)
+        // that.setData({
+        //   lineChartData: chartData
+        // })
 
-    //   },
-    //   fail:function(e){
-    //     console.log("失败")
-    //   }
-    // })
-    // wx.request({
-    //   url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
-    //   data:{
-    //     "keywords": "武汉大学",
-    //     "chart_type": "emotion"
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success :function(e){
-    //     console.log(e.data)
-    //     var positive = e.data.result.items[0].percent
-    //     var nagative = e.data.result.items[1].percent
-    //     that.setData({
-    //       keywordInfo:{
-    //         keywordName: "武汉大学",
-    //         intro: "如果你无法简洁的表达你的想法，那只能说明你还不够了解它。",
-    //         positive: (positive*100).toFixed(2),
-    //         nagative: (nagative*100).toFixed(2)
-    //       }
-    //     })
-    //   }
-    // })
+      },
+      fail:function(e){
+        console.log("失败")
+      }
+    })
+    wx.request({
+      url: 'https://api.niucodata.com/api/vip/chart/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
+      
+      data:{
+        "keywords": options.keyword,
+        "chart_type": "emotion"
+      },
+      
+      header: {
+        'content-type': 'application/json'
+      },
+      success :function(e){
+        console.log(e.data)
+        var positive = e.data.result.items[0].percent
+        var nagative = e.data.result.items[1].percent
+        that.setData({
+          keywordInfo:{
+            keywordName: options.keyword,
+            intro: "如果你无法简洁的表达你的想法，那只能说明你还不够了解它。"
+          },
+          keywordEmotion:{
+            positive: (positive * 100).toFixed(2),
+            nagative: (nagative * 100).toFixed(2)
+          }
+          
+        })
+      }
+    })
   },
 
   /**
