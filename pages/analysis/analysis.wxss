@@ -1,7 +1,4 @@
 /* pages/analysis/analysis.wxss */
-page{
-  width: 100%;
-}
 .body{
   display: flex;
   height: 100vh;
@@ -18,7 +15,7 @@ page{
   justify-content: center; 
   border: #e8e9e9 1rpx solid;
   border-radius: 10rpx;
-  margin: 2vw;
+  margin: 1vh;
   background-color: white
 }
 
@@ -55,8 +52,7 @@ page{
 }
 /*选项卡相关*/
 .content{
-  margin: 2vw;
-  display: inline-block
+  margin: 1vh;
 }
 .tab-nav{
   width: 100%;
@@ -70,35 +66,24 @@ page{
 .tab-item{
   width: 50%;
   display: flex;
-  border-bottom: 2rpx white solid;
   justify-content: center;
   align-items: center
 }
 .tab-item.active{
-  color: #315BA7;
-  border-bottom: 2rpx #315BA7 solid;
+  border-bottom: 2rpx #315BA7 solid
 }
-
 
 /*舆情分析选项卡*/
 .yq-analysis{
-  width: 100%;
   display: flex;
   flex-direction: column;
   height: 75vh;
+   /* overflow: scroll  */
 }
 .yq-item{
   width: 100%;
   margin-top: 1vh;
   background-color: white;
-}
-/* ec-canvas{
-  display: block;
-  height: 200px;
-  width: 300px
-} */
-canvas{
-  margin-top: 2vh
 }
 /* 情感分析 */
 .yq-item-hd{
@@ -122,9 +107,7 @@ canvas{
   font-size: 30rpx;
 }
 
-
-
-
+/**index.wxss**/
 .userimg{
   /*position: absolute;*/
   display: inline-block;
@@ -175,6 +158,7 @@ canvas{
   vertical-align: middle;
   width: 30rpx;
   height: 30rpx;
+  margin-right: 10rpx;
 }
 .bar-info-item-number{
   display: inline-block;
@@ -212,7 +196,7 @@ canvas{
 }
 .container .feed-item{
   width: 690rpx;
-  padding: 30rpx 30rpx 20rpx;
+  padding: 30rpx 20rpx 20rpx;
   margin: 7rpx 0 6rpx 0;
   background: #ffffff;
   border-top: 1px solid #eee;
@@ -277,7 +261,7 @@ canvas{
 .container .feed-item .feed-content .answer-actions view{
   display: inline-block;
   vertical-align: text-bottom;
-  padding: 0 10rpx 0 0;
+  padding: 0 20rpx 0 0;
   font-size: 24rpx;
 }
 .container .feed-item .feed-content .answer-actions .dot ::after{
@@ -288,6 +272,9 @@ canvas{
 }  
 .show{  
  display: block; 
+ margin-top:10rpx;
+ padding-top:30rpx;
+ border-top:#eee 2rpx solid
 } 
 
 .barrage{

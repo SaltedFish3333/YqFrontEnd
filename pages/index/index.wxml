@@ -12,8 +12,9 @@
     <text class="user-motto">{{motto}}</text>
   </view>  -->
   <view class="nav" >
-    <view class='brand-img'>
-    </view>
+    <view class='brand-img' style="width:750rpx;height:13vh;">  
+    <image id="img" src="../../images/logo.png" mode="aspectFit" style="width:100%;height:100%;"></image>  
+</view> 
     <view class='input-container'>
       <view class="search-icon">
         <icon type="search" color="#888" size='14'></icon>

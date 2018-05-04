@@ -83,6 +83,7 @@ Page({
   jump: function (e) {
     console.log(e)
     var keyword = e.currentTarget.dataset.select
+    app.keywords=keyword;
     wx.navigateTo({
       url: '../analysis/analysis?keyword='+keyword
     })

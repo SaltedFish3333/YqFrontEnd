@@ -19,24 +19,24 @@ module.exports = {
 }
 function getData(keywords, scope) {
   return new Promise(function (resolve, reject) {
-    // wx.request({
-    //   url: 'https://api.niucodata.com/api/vip/items/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
-    //   data: {
-    //     'keywords': keywords,
-    //     'scope': scope
-    //   },
-    //   header: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   success: function (res) {
-    //     console.log("success");
-    //     resolve(res);
-    //   },
-    //   fail: function (res) {
-    //     reject(res);
-    //     console.log("failed");
-    //   }
-    // })
+    wx.request({
+      url: 'https://api.niucodata.com/api/vip/items/?access_token=df6cfe180cc1aae3faabeccccf3a716c705c410e',
+      data: {
+        'keywords': keywords,
+        'scope': scope
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        console.log("success");
+        resolve(res);
+      },
+      fail: function (res) {
+        reject(res);
+        console.log("failed");
+      }
+    })
   })
 }
 
