@@ -8,29 +8,40 @@ Page({
    */
   data: {
       imagefirstsrc: '/images/back.png',//图片链接 
-      imagewidth: 0,//缩放后的宽 
-      imageheight: 0,//缩放后的高 
-      menuitems: [
-        { text: '#习近平#', url: '' },
-        { text: '#武汉大学#', url: '' },
-        { text: '#中兴#', url: '' },
-        { text: '#萨德#', url: '' },
-        { text: '#习近平#', url: '' },
-        { text: '#武汉大学#', url: '' },
-        { text: '#中兴#', url: '' },
-        { text: '#萨德#', url: '' },
-        { text: '#习近平#', url: '' },
-        { text: '#武汉大学#', url: '' },
-        { text: '#中兴#', url: '' },
-        { text: '#萨德#', url: '' },
-      ]
+      avatarUrl: '',
+      menuitems: []
    },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      avatarUrl: options.avatarUrl
+    })
+    wx.getStorage({
+      key: 'openid',
+      success:res=> {
+        var openid = res.data
+        wx.request({
+          url: 'http://localhost:8080/Yqanalysis/UserKeywordsServlet',
+          method: 'GET',
+          data: {
+            openId: openid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            var keys = res.data.keywords
+            this.setData({
+              menuitems : keys.split(',')
+            })
+          }
+        })
+      },
+    })
+   
   },
 
   /**
