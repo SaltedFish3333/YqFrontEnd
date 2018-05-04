@@ -71,7 +71,7 @@ Page({
   changeStatus: function (e) {
     console.log(app.globalData.openid)
     wx.request({
-      url: 'http://localhost:8080/Yqanalysis/ChangeKeywordsServlet',
+      url: 'http://45.32.65.148:81/Yqanalysis/ChangeKeywordsServlet',
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -251,7 +251,7 @@ Page({
       key: 'openid',
       success: res => {
         wx.request({
-          url: 'http://localhost:8080/Yqanalysis/CheckKeywordServlet',
+          url: 'http://45.32.65.148:81/Yqanalysis/CheckKeywordServlet',
           method: 'GET',
           header: {
             'content-type': 'application/json'

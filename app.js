@@ -54,7 +54,7 @@ App({
               that.globalData.openid = openid
               console.log(that.globalData.openid)
               wx.request({
-                url: 'http://localhost:8080/Yqanalysis/LoginServlet',
+                url: 'http://45.32.65.148:81/Yqanalysis/LoginServlet',
                 method: 'GET',
                 data: {
                   openId: openid
