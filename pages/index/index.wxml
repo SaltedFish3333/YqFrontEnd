@@ -20,7 +20,7 @@
         <icon type="search" color="#888" size='14'></icon>
       </view>
         
-      <input name="search" placeholder="请输入关键字" class="search-input" bindconfirm="searchSubmit" 
+      <input name="search" confirm-type='search' maxlength='25' bindconfirm='searchSubmit' placeholder="请输入关键字" class="search-input" bindconfirm="searchSubmit" 
       bindinput ="searchInput" bindfocus='focusSearch' >
       </input>
     </view>

@@ -17,17 +17,18 @@ Page({
       search: e.detail.value
     })
   },
-  searchSubmit: function () {
+  searchSubmit: function (e) {
    // console.log("点击了回车");
-      this.setData({
-      search: e.detail.value
+     console.log(e)
+     wx.navigateTo({
+       url: '../analysis/analysis?keyword='+e.detail.value
      })
   },
 
    onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
       wx.request({
-        url: 'http://localhost:8080/Yqanalysis/LoadInfoServlet',
+        url: 'http://45.32.65.148:81/Yqanalysis/LoadInfoServlet',
         success: res=>{
           console.log(res.data)
           var wbkwdStr = res.data.wbkwdStr

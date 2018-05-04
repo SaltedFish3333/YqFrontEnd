@@ -42,7 +42,6 @@
   z-index: 3;
 }
  .search-icon icon{
-  margin-top: 10rpx;
   margin-left: 10rpx;
 } 
 .content{
