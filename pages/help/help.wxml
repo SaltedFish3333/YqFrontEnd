@@ -1,0 +1,6 @@
+<view class="section">
+  <textarea placeholder="请输入您的反馈" class="text"/>
+  <view class="button">
+        <text class="button-text">提交</text>
+    </view>
+</view>

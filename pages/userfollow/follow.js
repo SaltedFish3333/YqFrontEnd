@@ -24,7 +24,7 @@ Page({
       success:res=> {
         var openid = res.data
         wx.request({
-          url: 'http://localhost:8080/Yqanalysis/UserKeywordsServlet',
+          url: 'http://45.32.65.148:81/Yqanalysis/UserKeywordsServlet',
           method: 'GET',
           data: {
             openId: openid
