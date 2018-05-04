@@ -2,10 +2,10 @@
   <view class="avatar-wrapper">
     <view>
       <view class="avatar">
-        <image src='/images/avatar_01.png'></image>
+        <image src='{{userInfo.avatarUrl}}'></image>
       </view>
       <view class="text">
-        <text bindtap="toLogin">注册 / 登录</text>
+        <text>{{userInfo.nickName}}</text>
       </view>
     </view>
   </view>
