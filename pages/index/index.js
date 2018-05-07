@@ -29,7 +29,7 @@ Page({
    onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
       wx.request({
-        url: 'http://45.32.65.148:81/Yqanalysis/LoadInfoServlet',
+        url: 'https://yujianweb.com/Yqanalysis/LoadInfoServlet',
         success: res=>{
           console.log(res);
           var wbkwdStr = res.data.wbkwdStr;
