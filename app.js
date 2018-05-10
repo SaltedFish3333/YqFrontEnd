@@ -51,7 +51,7 @@ App({
         var that = this
         if (res.code) {
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session?' +
+            url: 'https://yujianweb.com/Yqanalysis/servlet/WechatServlet?' +
             'appid=' + appid +
             '&secret=' + appsecret +
             '&js_code=' + res.code +
